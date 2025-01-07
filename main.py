@@ -6,5 +6,5 @@ import matplotlib.pyplot as plt
 # Caricare il dataset Iris
 iris = load_iris()
 data = pd.DataFrame(iris.data, columns=iris.feature_names)
+data['target'] = iris.target
 
-print(data.head())
