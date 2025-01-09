@@ -1,5 +1,11 @@
-import pandas as pd  #
+import pandas as pd
 from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.linear_model import LogisticRegression
+
 import seaborn as sns
 import matplotlib.pyplot as plt
 
@@ -8,3 +14,81 @@ iris = load_iris()
 data = pd.DataFrame(iris.data, columns=iris.feature_names)
 data['target'] = iris.target
 
+# Dividere i dati in input (X) e target (y)
+X = data[iris.feature_names]
+y = data['target']
+
+
+# Divisione in training e test set (80% training, 20% test)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+
+# Scaling dei dati
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Modello Decision Tree
+# 1. Inizializzare il modello Decision Tree
+dt_model = DecisionTreeClassifier(random_state=42)
+
+# 2. Addestrare il modello sui dati di training
+dt_model.fit(X_train, y_train)
+
+# 3. Effettuare le previsioni sui dati di test
+y_pred = dt_model.predict(X_test)
+
+# 4. Valutare il modello
+# Calcolare l'accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Decision Tree Accuracy:", accuracy)
+
+# Generare un report dettagliato
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+# Matrice di confusione
+print("\nConfusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+
+# Risultati Decision Tree:
+# - Il modello Decision Tree ha raggiunto un'accuracy perfetta (100%).
+# - Precision, recall e F1-score sono pari a 1.0 per tutte le classi.
+# - La matrice di confusione non presenta errori.
+# Osservazioni Decision Tree:
+# - Il modello ha classificato correttamente tutte le istanze nel dataset di test.
+# - Questa performance potrebbe indicare overfitting, dato che il dataset è semplice e ben separato.
+
+
+
+# Modello Logistic Regression
+# 1. Inizializzare il modello Logistic Regression
+# Utilizziamo max_iter per assicurarci che il modello converga
+lr_model = LogisticRegression(max_iter=200, random_state=42)
+
+# 2. Addestrare il modello sui dati di training
+lr_model.fit(X_train, y_train)
+
+# 3. Effettuare previsioni sui dati di test
+y_pred = lr_model.predict(X_test)
+
+# 4. Valutare il modello
+# Calcolare l'accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Logistic Regression Accuracy:", accuracy)
+
+# Generare un report dettagliato
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+# Matrice di confusione
+print("\nConfusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+
+# Risultati Logistic Regression:
+# - Il modello Logistic Regression ha raggiunto un'accuracy perfetta (100%).
+# - Precision, recall e F1-score sono pari a 1.0 per tutte le classi.
+# - La matrice di confusione non presenta errori.
+# Osservazioni Logistic Regression:
+# - I risultati perfetti indicano che il dataset Iris è semplice da separare.
+# - Possibile overfitting dovuto alla semplicità e separabilità del dataset.
