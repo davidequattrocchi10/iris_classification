@@ -5,9 +5,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from sklearn.linear_model import LogisticRegression
-
-import seaborn as sns
-import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
 
 # Caricare il dataset Iris
 iris = load_iris()
@@ -92,3 +91,68 @@ print(confusion_matrix(y_test, y_pred))
 # Osservazioni Logistic Regression:
 # - I risultati perfetti indicano che il dataset Iris è semplice da separare.
 # - Possibile overfitting dovuto alla semplicità e separabilità del dataset.
+
+
+# Modello KNN
+# 1. Inizializzare il modello KNN
+# Impostiamo il numero di vicini (k) a 3
+knn_model = KNeighborsClassifier(n_neighbors=3)
+
+# 2. Addestrare il modello sui dati di training
+knn_model.fit(X_train, y_train)
+
+# 3. Effettuare previsioni sui dati di test
+y_pred = knn_model.predict(X_test)
+
+# 4. Valutare il modello
+# Calcolare l'accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("KNN Accuracy:", accuracy)
+
+# Generare un report dettagliato
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+# Matrice di confusione
+print("\nConfusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+
+# Risultati KNN:
+# - Il modello KNN ha raggiunto un'accuracy perfetta (100%).
+# - Precision, recall e F1-score sono pari a 1.0 per tutte le classi.
+# - La matrice di confusione non presenta errori: tutte le istanze sono state classificate correttamente.
+# Osservazioni KNN:
+# - Poiché il dataset Iris è semplice, KNN si è dimostrato efficace anche con un numero ridotto di vicini (k=3)
+
+
+# Modello Support Vector Machine
+# 1. Inizializzare il modello SVM
+# Utilizziamo un kernel lineare
+svm_model = SVC(kernel='linear', random_state=42)
+
+# 2. Addestrare il modello sui dati di training
+svm_model.fit(X_train, y_train)
+
+# 3. Effettuare previsioni sui dati di test
+y_pred = svm_model.predict(X_test)
+
+# 4. Valutare il modello
+# Calcolare l'accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("SVM Accuracy:", accuracy)
+
+# Generare un report dettagliato
+print("\nClassification Report:")
+print(classification_report(y_test, y_pred))
+
+# Matrice di confusione
+print("\nConfusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+
+
+# Risultati Support Vector Machine:
+# - Il modello SVM ha ottenuto un'accuracy di 96.67%
+# - Precision, recall e F1-score sono elevati per tutte le classi, con una leggera diminuzione per la classe `1` (recall = 0.89).
+# - La matrice di confusione mostra un errore: un'istanza della classe `1` è stata classificata come classe `2`.
+# Osservazioni Support Vector Machine:
+# - SVM si è dimostrato robusto anche con un kernel lineare, ma potrebbe beneficiare di un kernel più sofisticato per migliorare ulteriormente le performance.

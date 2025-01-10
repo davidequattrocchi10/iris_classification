@@ -63,7 +63,20 @@ pip install numpy pandas matplotlib seaborn scikit-learn
    python main.py
    ```
    
-## 7. Autore e Licenza
+## 7.  Conclusioni
+Il progetto ha dimostrato come diversi algoritmi di Machine Learning supervisionato possano essere applicati al dataset Iris. 
+
+#### Risultati Principali:
+- **Accuracy**:
+  - Decision Tree, Logistic Regression e K-Nearest Neighbors hanno raggiunto un'accuracy del 100%.
+  - Support Vector Machine ha ottenuto un'accuracy del 96.67%.
+- **Osservazioni**:
+  - Il dataset Iris è semplice e ben separabile, consentendo a tutti i modelli di ottenere alte performance.
+  - Logistic Regression è il modello più semplice e generalizzabile.
+  - Decision Tree e KNN hanno eccelso su questo dataset, ma potrebbero mostrare limiti su dataset più complessi.
+  - SVM, pur avendo leggermente sottoperformato, è robusto e può migliorare con un kernel più sofisticato (es. RBF).
+   
+## 8. Autore e Licenza
 **Autore**: Davide Quattrocchi
 
 **Licenza**: Questo progetto è rilasciato sotto la licenza MIT.
