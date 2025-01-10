@@ -27,6 +27,18 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.transform(X_test)
 
+def evaluate_model(model, X_test, Y_test):
+    # Effettuare previsioni sui dati di test
+    y_pred = model.predict(X_test)
+    # Calcolare l'accuracy
+    print(f"Accuracy: {accuracy_score(Y_test, y_pred)}")
+    # Generare un report dettagliato
+    print("\nClassification Report:")
+    print(classification_report(Y_test, y_pred))
+    # Matrice di confusione
+    print("\nConfusion Matrix:")
+    print(confusion_matrix(Y_test, y_pred))
+
 # Modello Decision Tree
 # 1. Inizializzare il modello Decision Tree
 dt_model = DecisionTreeClassifier(random_state=42)
@@ -34,21 +46,9 @@ dt_model = DecisionTreeClassifier(random_state=42)
 # 2. Addestrare il modello sui dati di training
 dt_model.fit(X_train, y_train)
 
-# 3. Effettuare le previsioni sui dati di test
-y_pred = dt_model.predict(X_test)
+# 3. Valuta il modello
+evaluate_model(dt_model, X_test, y_test)
 
-# 4. Valutare il modello
-# Calcolare l'accuracy
-accuracy = accuracy_score(y_test, y_pred)
-print("Decision Tree Accuracy:", accuracy)
-
-# Generare un report dettagliato
-print("\nClassification Report:")
-print(classification_report(y_test, y_pred))
-
-# Matrice di confusione
-print("\nConfusion Matrix:")
-print(confusion_matrix(y_test, y_pred))
 
 # Risultati Decision Tree:
 # - Il modello Decision Tree ha raggiunto un'accuracy perfetta (100%).
@@ -68,21 +68,8 @@ lr_model = LogisticRegression(max_iter=200, random_state=42)
 # 2. Addestrare il modello sui dati di training
 lr_model.fit(X_train, y_train)
 
-# 3. Effettuare previsioni sui dati di test
-y_pred = lr_model.predict(X_test)
-
-# 4. Valutare il modello
-# Calcolare l'accuracy
-accuracy = accuracy_score(y_test, y_pred)
-print("Logistic Regression Accuracy:", accuracy)
-
-# Generare un report dettagliato
-print("\nClassification Report:")
-print(classification_report(y_test, y_pred))
-
-# Matrice di confusione
-print("\nConfusion Matrix:")
-print(confusion_matrix(y_test, y_pred))
+# 3. Valuta il modello
+evaluate_model(lr_model, X_test, y_test)
 
 # Risultati Logistic Regression:
 # - Il modello Logistic Regression ha raggiunto un'accuracy perfetta (100%).
@@ -101,21 +88,8 @@ knn_model = KNeighborsClassifier(n_neighbors=3)
 # 2. Addestrare il modello sui dati di training
 knn_model.fit(X_train, y_train)
 
-# 3. Effettuare previsioni sui dati di test
-y_pred = knn_model.predict(X_test)
-
-# 4. Valutare il modello
-# Calcolare l'accuracy
-accuracy = accuracy_score(y_test, y_pred)
-print("KNN Accuracy:", accuracy)
-
-# Generare un report dettagliato
-print("\nClassification Report:")
-print(classification_report(y_test, y_pred))
-
-# Matrice di confusione
-print("\nConfusion Matrix:")
-print(confusion_matrix(y_test, y_pred))
+# 3. Valuta il modello
+evaluate_model(knn_model, X_test, y_test)
 
 # Risultati KNN:
 # - Il modello KNN ha raggiunto un'accuracy perfetta (100%).
@@ -133,21 +107,8 @@ svm_model = SVC(kernel='linear', random_state=42)
 # 2. Addestrare il modello sui dati di training
 svm_model.fit(X_train, y_train)
 
-# 3. Effettuare previsioni sui dati di test
-y_pred = svm_model.predict(X_test)
-
-# 4. Valutare il modello
-# Calcolare l'accuracy
-accuracy = accuracy_score(y_test, y_pred)
-print("SVM Accuracy:", accuracy)
-
-# Generare un report dettagliato
-print("\nClassification Report:")
-print(classification_report(y_test, y_pred))
-
-# Matrice di confusione
-print("\nConfusion Matrix:")
-print(confusion_matrix(y_test, y_pred))
+# 3. Valuta il modello
+evaluate_model(svm_model, X_test, y_test)
 
 
 # Risultati Support Vector Machine:

@@ -75,6 +75,15 @@ Il progetto ha dimostrato come diversi algoritmi di Machine Learning supervision
   - Logistic Regression è il modello più semplice e generalizzabile.
   - Decision Tree e KNN hanno eccelso su questo dataset, ma potrebbero mostrare limiti su dataset più complessi.
   - SVM, pur avendo leggermente sottoperformato, è robusto e può migliorare con un kernel più sofisticato (es. RBF).
+
+### Risultati Riassuntivi
+| Modello                | Accuracy | Osservazioni                                   |
+|------------------------|----------|-----------------------------------------------|
+| Decision Tree          | 100%     | Perfetto, ma potenziale overfitting           |
+| Logistic Regression    | 100%     | Semplice e generalizzabile                    |
+| K-Nearest Neighbors    | 100%     | Efficace con pochi vicini                     |
+| Support Vector Machine | 96.67%   | Robusto, ma kernel lineare non ottimale       |
+
    
 ## 8. Autore e Licenza
 **Autore**: Davide Quattrocchi
